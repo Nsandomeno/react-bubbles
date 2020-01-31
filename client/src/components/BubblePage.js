@@ -20,11 +20,11 @@ const BubblePage = () => {
       .catch((error) => {
         console.log("This is an error from axiosWithAuth get request:", error.message)
       })
-  },[])
+  },[setColorList])
 
   return (
     <>
-      <ColorList colors={colorList} updateColors={setColorList} />
+      <ColorList colors={colorList} updateColors={setColorList}  />
       <Bubbles colors={colorList} />
     </>
   );
