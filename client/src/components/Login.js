@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({
       username: '',
       password: ''
@@ -17,12 +17,16 @@ const Login = () => {
     })
   }
 
+  // console.log("These are props in the login component:", props)
+
   const login = (event) => {
     event.preventDefault()
     Axios.post('http://localhost:5000/api/login', credentials)
       .then((response) => {
-        console.log("This is response from axios post for login:", response)
+        // console.log("This is response from axios post for login:", response)
         localStorage.setItem('token', response.data.payload)
+        props.history.push('/bubblepage')
+
       })
       .catch((error) => {
         console.log("This is an error on login:", error.message)
